@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление сотрудниками | Inventory System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <h1>Inventory System</h1>
+            <div class="nav-links">
+                <a href="/index.html">Главная</a>
+                <a href="/assets.html">Активы</a>
+                <a href="/employees.html" class="active">Сотрудники</a>
+                <a href="/departments.html">Отделы</a>
+                <a href="/transfers.html">Перемещения</a>
+                <a href="/reports.html">Отчеты</a>
+                <a href="#" id="logout">Выйти</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Управление сотрудниками</h2>
+            <button id="add-employee-btn" class="btn btn-success">+ Добавить сотрудника</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ФИО</th>
+                    <th>Должность</th>
+                    <th>Email</th>
+                    <th>Роль</th>
+                    <th>Отдел</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody id="employees-table">
+                <!-- Данные будут загружены через JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления/редактирования сотрудника -->
+<div id="employee-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="employee-modal-title">Добавить сотрудника</h2>
+        <form id="employee-form">
+            <input type="hidden" id="employee-id">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="employee-fullname">ФИО</label>
+                    <input type="text" id="employee-fullname" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee-position">Должность</label>
+                    <input type="text" id="employee-position" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee-email">Email</label>
+                    <input type="email" id="employee-email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee-password">Пароль</label>
+                    <input type="password" id="employee-password" class="form-control">
+                    <small class="form-text">Оставьте пустым, если не хотите менять пароль</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee-role">Роль</label>
+                    <select id="employee-role" class="form-control" required>
+                        <option value="employee">Сотрудник</option>
+                        <option value="manager">Менеджер</option>
+                        <option value="admin">Администратор</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="employee-department">Отдел</label>
+                    <select id="employee-department" class="form-control">
+                        <option value="">Не назначен</option>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-employee">Отмена</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/static/auth.js"></script>
+<script src="/static/api.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/employees.js"></script>
+</body>
+</html>

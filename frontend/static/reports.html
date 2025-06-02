@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчеты | Inventory System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <h1>Inventory System</h1>
+            <div class="nav-links">
+                <a href="/index.html">Главная</a>
+                <a href="/assets.html">Активы</a>
+                <a href="/employees.html">Сотрудники</a>
+                <a href="/departments.html">Отделы</a>
+                <a href="/transfers.html">Перемещения</a>
+                <a href="/reports.html" class="active">Отчеты</a>
+                <a href="#" id="logout">Выйти</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Отчеты</h2>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="status-report">По статусам</button>
+            <button class="tab-btn" data-tab="department-report">По отделам</button>
+            <button class="tab-btn" data-tab="transfers-report">Перемещения</button>
+            <button class="tab-btn" data-tab="inventory-report">Инвентаризация</button>
+        </div>
+
+        <div id="status-report" class="tab-content active">
+            <h3>Активы по статусам</h3>
+            <div class="chart-container">
+                <canvas id="status-chart"></canvas>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Статус</th>
+                        <th>Количество</th>
+                        <th>Общая стоимость</th>
+                    </tr>
+                    </thead>
+                    <tbody id="status-table">
+                    <!-- Данные будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="department-report" class="tab-content">
+            <h3>Стоимость активов по отделам</h3>
+            <div class="chart-container">
+                <canvas id="department-chart"></canvas>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Отдел</th>
+                        <th>Количество</th>
+                        <th>Общая стоимость</th>
+                        <th>Средняя стоимость</th>
+                    </tr>
+                    </thead>
+                    <tbody id="department-table">
+                    <!-- Данные будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="transfers-report" class="tab-content">
+            <h3>Отчет по перемещениям</h3>
+            <form id="transfers-filter" class="filter-form">
+                <div class="filter-grid">
+                    <div class="form-group">
+                        <label for="transfers-from">С</label>
+                        <input type="date" id="transfers-from" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="transfers-to">По</label>
+                        <input type="date" id="transfers-to" class="form-control">
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-primary">Применить</button>
+                    <button type="reset" class="btn btn-secondary">Сбросить</button>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Актив</th>
+                        <th>Откуда</th>
+                        <th>Куда</th>
+                        <th>Сотрудник</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transfers-report-table">
+                    <!-- Данные будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="inventory-report" class="tab-content">
+            <h3>Инвентаризационный отчет</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>Всего активов</h4>
+                    <p id="total-assets-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Общая стоимость</h4>
+                    <p id="total-assets-value">0 ₽</p>
+                </div>
+                <div class="stat-card">
+                    <h4>Дата формирования</h4>
+                    <p id="report-date">-</p>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <canvas id="inventory-status-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="inventory-location-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="inventory-department-chart"></canvas>
+                </div>
+            </div>
+
+            <h4>Последние перемещения</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Актив</th>
+                        <th>Откуда</th>
+                        <th>Куда</th>
+                    </tr>
+                    </thead>
+                    <tbody id="recent-transfers-table">
+                    <!-- Данные будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/auth.js"></script>
+<script src="/static/api.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/reports.js"></script>
+</body>
+</html>

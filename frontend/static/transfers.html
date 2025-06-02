@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление перемещениями | Inventory System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <h1>Inventory System</h1>
+            <div class="nav-links">
+                <a href="/index.html">Главная</a>
+                <a href="/assets.html">Активы</a>
+                <a href="/employees.html">Сотрудники</a>
+                <a href="/departments.html">Отделы</a>
+                <a href="/transfers.html" class="active">Перемещения</a>
+                <a href="/reports.html">Отчеты</a>
+                <a href="#" id="logout">Выйти</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Управление перемещениями</h2>
+            <button id="add-transfer-btn" class="btn btn-success">+ Добавить перемещение</button>
+        </div>
+
+        <div class="card-body">
+            <div class="filter-section">
+                <h3>Фильтры</h3>
+                <form id="transfer-filters" class="filter-form">
+                    <div class="filter-grid">
+                        <div class="form-group">
+                            <label for="filter-asset">Актив</label>
+                            <select id="filter-asset" class="form-control">
+                                <option value="">Все активы</option>
+                                <!-- Заполнится через JS -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filter-employee">Сотрудник</label>
+                            <select id="filter-employee" class="form-control">
+                                <option value="">Все сотрудники</option>
+                                <!-- Заполнится через JS -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filter-location">Местоположение</label>
+                            <select id="filter-location" class="form-control">
+                                <option value="">Все местоположения</option>
+                                <!-- Заполнится через JS -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="filter-date">Дата</label>
+                            <input type="date" id="filter-date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">Применить</button>
+                        <button type="reset" class="btn btn-secondary">Сбросить</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Актив</th>
+                        <th>Сотрудник</th>
+                        <th>Откуда</th>
+                        <th>Куда</th>
+                        <th>Дата</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transfers-table">
+                    <!-- Данные будут загружены через JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления перемещения -->
+<div id="transfer-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="transfer-modal-title">Добавить перемещение</h2>
+        <form id="transfer-form">
+            <input type="hidden" id="transfer-id">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="transfer-asset">Актив</label>
+                    <select id="transfer-asset" class="form-control" required>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transfer-employee">Сотрудник</label>
+                    <select id="transfer-employee" class="form-control" required>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transfer-from">Откуда</label>
+                    <select id="transfer-from" class="form-control" required>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transfer-to">Куда</label>
+                    <select id="transfer-to" class="form-control" required>
+                        <!-- Заполнится через JS -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="transfer-date">Дата</label>
+                    <input type="datetime-local" id="transfer-date" class="form-control" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="transfer-notes">Примечания</label>
+                    <textarea id="transfer-notes" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-transfer">Отмена</button>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/static/auth.js"></script>
+<script src="/static/api.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/transfers.js"></script>
+</body>
+</html>

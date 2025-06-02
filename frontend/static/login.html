@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему | Inventory System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="auth-page">
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Вход в систему</h2>
+        </div>
+
+        <form id="login-form" class="auth-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+        </form>
+
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+
+        <div class="auth-footer">
+            Нет аккаунта? <a href="/register.html">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+
+<script src="/static/auth.js"></script>
+<script src="/static/api.js"></script>
+<script>
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorElement = document.getElementById('error-message');
+
+        try {
+            const response = await login(email, password);
+            if (response.token) {
+                localStorage.setItem('token', response.token);
+                window.location.href = 'index.html';
+            }
+        } catch (error) {
+            errorElement.textContent = error.message || 'Ошибка входа';
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+    });
+</script>
+</body>
+</html>
