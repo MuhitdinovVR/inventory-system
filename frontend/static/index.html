@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script type="module">
+        import auth from './static/auth.js';
+
+        // Пример использования
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Auth module loaded');
+            window.auth = auth; // Делаем доступным глобально для тестов
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory System</title>
