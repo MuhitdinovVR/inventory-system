@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <script type="module">
+        import auth from './static/auth.js';
+
+        // Пример использования
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Auth module loaded');
+            window.auth = auth; // Делаем доступным глобально для тестов
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <h1>Inventory System</h1>
+            <div class="nav-links">
+                <a href="/">Главная</a>
+                <a href="/assets">Активы</a>
+                <a href="/employees">Сотрудники</a>
+                <a href="/departments">Отделы</a>
+                <a href="/transfers">Перемещения</a>
+                <a href="/reports">Отчеты</a>
+                <a href="#" id="logout">Выйти</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Добро пожаловать в систему управления инвентарем</h2>
+        <p>Используйте меню навигации для доступа к различным разделам системы.</p>
+
+        <div class="quick-stats">
+            <div class="stat-card">
+                <h3>Всего активов</h3>
+                <p id="total-assets">Загрузка...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Всего сотрудников</h3>
+                <p id="total-employees">Загрузка...</p>
+            </div>
+            <div class="stat-card">
+                <h3>Последние перемещения</h3>
+                <ul id="recent-transfers">
+                    <li>Загрузка...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/auth.js"></script>
+<script src="/static/api.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
